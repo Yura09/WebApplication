@@ -1,0 +1,115 @@
+﻿@using System.Security.Claims
+@model IEnumerable<Address>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+.logoutLblPos{
+
+   position:fixed;
+   right:10px;
+   top:5px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+</style>
+<h3>addresses</h3>
+<div>
+    <div style="padding-bottom: 30px">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @using (Html.BeginForm("Index", "Address", FormMethod.Get))
+    {
+        <p>
+            Find: @Html.TextBox("search", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search"/>
+        </p>
+
+    }
+
+    @using (Html.BeginForm("Index", "Address", FormMethod.Get))
+    {
+        <fieldset>Sort Type
+            <select id="sortBy" name="sortBy" onchange="this.form.submit();">
+                <option selected value="address_id">address_id</option>
+                <option value="surname">surname</option>
+                <option value="address">address</option>
+                <option value="building">building</option>
+                <option value="flat">flat</option>
+                <option value="rent">rent</option>
+            </select>
+       <!--     <input type="submit" value="Submit"> -->
+            
+        </fieldset>
+        
+    }
+  
+</div>
+    <table>
+        <tr>
+            <td>
+                <p>id</p></td>
+            <td>
+                <p>surname</p></td>
+            <td>
+                <p>name of address</p></td>
+            <td>
+                <p>number of building</p></td>
+            <td>
+                <p>number of flat</p></td>
+            <td>
+                <p>rent</p></td>
+            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin")
+            {
+                <td></td>
+            }
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.building)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.flat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rent)
+                </td>
+                @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin")
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "EditAddress", new {id = item.address_id}) |
+                        @Html.ActionLink("Delete", "Delete", new {id = item.address_id})
+                    </td>
+                }
+            </tr>
+        }
+         @using (Html.BeginForm("Logout", "Account", FormMethod.Get))
+         {
+
+             <label class="logoutLblPos">
+                 <input name="submit2" type="submit" id="submit2" value="log out">
+             </label>
+         }
+    </table>
+</div>

@@ -1,0 +1,36 @@
+﻿@model Address
+
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Address Delete</h2>
+<dl>
+    <dt>Surname</dt>
+    <dd>
+        @Html.DisplayFor(model => model.surname)
+    </dd>
+ 
+    <dt>address</dt>
+    <dd>
+        @Html.DisplayFor(model => model.address)
+    </dd>
+ 
+    <dt>building</dt>
+    <dd>
+        @Html.DisplayFor(model => model.building)
+    </dd>
+     <dt>flat</dt>
+    <dd>
+        @Html.DisplayFor(model => model.flat)
+    </dd>
+     <dt>rent</dt>
+        <dd>
+            @Html.DisplayFor(model => model.rent)
+        </dd>
+</dl>
+ 
+@using (Html.BeginForm())
+{
+    <input type="submit" value="delete"  />
+}

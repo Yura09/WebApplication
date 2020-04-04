@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Edit Address";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WebApplication.Models.Address
+<h2>Address № @Model.address_id</h2>
+@using (Html.BeginForm("EditAddress", "address", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.address_id)
+        <p>
+            @Html.LabelFor(m => m.surname, "surname")
+            <br />
+            @Html.EditorFor(m => m.surname)
+              <span asp-validation-for="surname"></span>
+        </p>
+        <p>
+            @Html.LabelFor(m => m.address, "address")
+            <br />
+            @Html.EditorFor(m => m.address)
+              <span asp-validation-for="address"></span>
+ 
+        </p>
+        <p>
+            @Html.LabelFor(m => m.building, "building")
+            <br />
+            @Html.EditorFor(m => m.building)
+              <span asp-validation-for="building"></span>
+        </p>
+        <p>
+            @Html.LabelFor(m => m.flat, "flat")
+            <br />
+            @Html.EditorFor(m => m.flat)
+              <span asp-validation-for="flat"></span>
+        </p>
+        <p>
+                    @Html.LabelFor(m => m.rent, "rent")
+                    <br />
+                    @Html.EditorFor(m => m.rent)
+                      <span asp-validation-for="rent"></span>
+                </p>
+        <p><input type="submit" value="save" /></p>
+    </fieldset>
+}
+@section scripts{
+ 
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

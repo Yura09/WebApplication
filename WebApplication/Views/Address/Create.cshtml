@@ -1,0 +1,47 @@
+﻿@model Address
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<h2>New Address</h2>
+ 
+@using (Html.BeginForm()) 
+{ @Html.LabelFor(model => model.address_id, "id")
+    <br />
+    @Html.EditorFor(model => model.address_id )
+    <span asp-validation-for="address_id"></span>
+    <br /><br />
+    @Html.LabelFor(model => model.surname, "surname")
+    <br />
+    @Html.EditorFor(model => model.surname)
+    <span asp-validation-for="surname"></span>
+    <br /><br />
+    @Html.LabelFor(model => model.address, "address")
+    <br />
+    @Html.EditorFor(model => model.address)
+    <span asp-validation-for="address"></span>
+    <br /><br />
+    @Html.LabelFor(model => model.building, "building")
+    <br />
+    @Html.EditorFor(model => model.building)
+    <span asp-validation-for="building"></span>
+    <br /><br />
+    @Html.LabelFor(model => model.flat, "flat")
+    <br />
+    @Html.EditorFor(model => model.flat)
+    <span asp-validation-for="flat"></span>
+    <br /><br />
+    @Html.LabelFor(model => model.rent, "rent")
+    <br />
+    @Html.EditorFor(model => model.rent)
+    <span asp-validation-for="rent"></span>
+    <br /><br />
+    <input type="submit" value="add" />
+}
+@section scripts{
+ 
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

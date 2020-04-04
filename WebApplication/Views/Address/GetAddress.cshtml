@@ -1,0 +1,82 @@
+﻿@using System.Security.Claims
+@model Address
+
+@{
+    ViewBag.Title = "GetAddress";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+</style>
+<div>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        <tr class="header">
+
+            <td>
+                <p>id</p>
+            </td>
+            <td>
+                <p>surname</p>
+            </td>
+            <td>
+                <p>name of address</p>
+            </td>
+            <td>
+                <p>number of building</p>
+            </td>
+            <td>
+                <p>number of flat</p>
+            </td>
+            <td>
+                <p>rent</p>
+            </td>
+            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin")
+            {
+                <td></td>
+            }
+
+        </tr>
+
+        <tr>
+            <td>
+                <p>@Model.address_id</p>
+            </td>
+            <td>
+                <p>@Model.surname</p>
+            </td>
+            <td>
+                <p>@Model.address</p>
+            </td>
+            <td>
+                <p>@Model.building</p>
+            </td>
+            <td>
+                <p>@Model.flat</p>
+            </td>
+            <td>
+                <p>@Model.rent</p>
+            </td>
+            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin")
+            {
+                <td>
+                    @Html.ActionLink("Edit", "EditAddress", new {id = Model.address_id}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = Model.address_id})
+                </td>
+            }
+
+        </tr>
+
+    </table>
+</div>
