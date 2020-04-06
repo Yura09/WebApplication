@@ -79,7 +79,7 @@ namespace WebApplication.Controllers
                     return RedirectToAction("Index", "Address");
                 }
                 else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                    ModelState.AddModelError("", "Incorrect login or password");
             }
 
             return View(model);

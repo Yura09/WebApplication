@@ -35,11 +35,14 @@ namespace WebApplication
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AddressUserContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    
                 });
+            
           
             services.AddMvc();
             services.AddControllersWithViews();

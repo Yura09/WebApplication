@@ -41,7 +41,7 @@ th, td {
     {
         <fieldset>Sort Type
             <select id="sortBy" name="sortBy" onchange="this.form.submit();">
-                <option selected value="address_id">address_id</option>
+                <option value="address_id">address_id</option>
                 <option value="surname">surname</option>
                 <option value="address">address</option>
                 <option value="building">building</option>
@@ -69,7 +69,7 @@ th, td {
                 <p>number of flat</p></td>
             <td>
                 <p>rent</p></td>
-            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin")
+            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "admin")
             {
                 <td></td>
             }
@@ -95,7 +95,7 @@ th, td {
                 <td>
                     @Html.DisplayFor(modelItem => item.rent)
                 </td>
-                @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin")
+                @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "admin")
                 {
                     <td>
                         @Html.ActionLink("Edit", "EditAddress", new {id = item.address_id}) |

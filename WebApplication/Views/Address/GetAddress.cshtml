@@ -42,7 +42,7 @@ th, td {
             <td>
                 <p>rent</p>
             </td>
-            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin")
+            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "admin")
             {
                 <td></td>
             }
@@ -68,7 +68,7 @@ th, td {
             <td>
                 <p>@Model.rent</p>
             </td>
-            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin")
+            @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "admin")
             {
                 <td>
                     @Html.ActionLink("Edit", "EditAddress", new {id = Model.address_id}) |

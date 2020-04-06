@@ -177,7 +177,16 @@ namespace WebApplication.Controllers
         public HashSet<Address> SearchBy(string s)
         {
             var searchingObject = new HashSet<Address>();
-            var list = GetDataAddressesFromUser();
+            IEnumerable<Address> list;
+            if (UserIsAdmin())
+            {
+                list = GetAllAddresses();
+            }
+            else
+            {
+                list = GetDataAddressesFromUser();
+            }
+
             foreach (var obj in list)
             {
                 var properties = obj.GetType().GetProperties();
@@ -233,7 +242,7 @@ namespace WebApplication.Controllers
 
         public bool UserIsAdmin()
         {
-            return User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "Admin";
+            return User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "admin";
         }
     }
 }
