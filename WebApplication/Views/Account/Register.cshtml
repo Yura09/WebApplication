@@ -1,13 +1,4 @@
 ﻿@model RegisterModel
-<style>
-body{
-  font-family: 'Open Sans', sans-serif;
- 
-  width:100%; 
-  text-align:center;
-  margin: 20px 0 20px 0;   
-}
-</style>
 
 <h2>Registration</h2>
 <body>
@@ -18,32 +9,32 @@ body{
         <div>
             <label asp-for="FirstName">Enter first name</label><br/>
             <input type="text" asp-for="FirstName"/>
-            <span asp-validation-for="FirstName"/>
+            <span asp-validation-for="FirstName"></span>
         </div>
         <div>
             <label asp-for="LastName">Enter last name</label><br/>
             <input type="text" asp-for="LastName"/>
-            <span asp-validation-for="LastName"/>
+            <span asp-validation-for="LastName"></span>
         </div>
         <div>
             <label asp-for="Email">Enter email</label><br/>
             <input type="text" asp-for="Email"/>
-            <span asp-validation-for="Email"/>
+            <span asp-validation-for="Email"></span>
         </div>
         <div>
             <label asp-for="Role">Enter role</label><br/>
             <input type="text" asp-for="Role"/>
-            <span asp-validation-for="Role"/>
+            <span asp-validation-for="Role"></span>
         </div>
         <div>
             <label asp-for="Password">Enter password</label><br/>
             <input asp-for="Password"/>
-            <span asp-validation-for="Password"/>
+            <span asp-validation-for="Password"></span>
         </div>
         <div>
             <label asp-for="ConfirmPassword">Confirm password</label><br/>
             <input asp-for="ConfirmPassword"/>
-            <span asp-validation-for="ConfirmPassword"/>
+            <span asp-validation-for="ConfirmPassword"></span>
         </div>
         <div style="padding: 15px">
             <input type="submit" value="Registration" style="padding: 7px"/>

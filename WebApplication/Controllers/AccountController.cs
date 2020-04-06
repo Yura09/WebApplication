@@ -78,8 +78,8 @@ namespace WebApplication.Controllers
 
                     return RedirectToAction("Index", "Address");
                 }
-                else
-                    ModelState.AddModelError("", "Incorrect login or password");
+
+                ModelState.AddModelError("Email", "Incorrect login or password");
             }
 
             return View(model);
