@@ -31,23 +31,26 @@ namespace WebApplication.Models
         public string password { get; set; }
 
         [Required]
-        [RegularExpression(@"admin|user", ErrorMessage = "admin or user only allowed")]
+        [RegularExpression(@"admin|user|creator", ErrorMessage = "admin or user only allowed")]
         public string role { get; set; }
-
-        public virtual ICollection<AddressUser> AddressUsers { get; set; }
+        [Required]
+        public bool active { get; set; }
+     
 
         public User()
         {
+          
         }
 
-        public User(int userId, string firstName, string lastName, string email, string password, string role)
+        public User(int userId, string firstName, string lastName, string email, string password, string role,bool active)
         {
-            user_id = userId;
-            first_name = firstName;
-            last_name = lastName;
+           this.user_id = userId;
+           this.first_name = firstName;
+           this.last_name = lastName;
             this.email = email;
             this.password = password;
             this.role = role;
+            this.active = active;
         }
     }
 }

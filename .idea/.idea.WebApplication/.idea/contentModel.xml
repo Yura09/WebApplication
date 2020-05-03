@@ -15,6 +15,7 @@
           <e p="AccountController.cs" t="Include" />
           <e p="AddressController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
+          <e p="UserController.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="Address.cs" t="Include" />
@@ -68,6 +69,11 @@
             <e p="_Layout.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
             <e p="Error.cshtml" t="Include" />
+          </e>
+          <e p="User" t="Include">
+            <e p="Active.cshtml" t="Include" />
+            <e p="GetUserData.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
           </e>
         </e>
         <e p="WebApplication.csproj" t="IncludeRecursive" />

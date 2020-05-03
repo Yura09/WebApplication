@@ -71,3 +71,6 @@ C:\Users\Yura\RiderProjects\WebApplication\WebApplication\bin\Debug\netcoreapp3.
 C:\Users\Yura\RiderProjects\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\Yura\RiderProjects\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\Yura\RiderProjects\WebApplication\WebApplication\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Yura\RiderProjects\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
+C:\Users\Yura\RiderProjects\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\Razor\Views\User\Active.cshtml.g.cs
+C:\Users\Yura\RiderProjects\WebApplication\WebApplication\obj\Debug\netcoreapp3.1\Razor\Views\User\GetUserData.cshtml.g.cs

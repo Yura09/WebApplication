@@ -1,0 +1,100 @@
+﻿@model IEnumerable<User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+.logoutLblPos{
+
+   position:fixed;
+   right:10px;
+   top:5px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+</style>
+<h3>users</h3>
+<table>
+   
+        <div style="padding-bottom: 10px">
+        <p>
+            @Html.ActionLink("Create New", "Register","Account")
+        </p>
+        </div>
+    <tr>
+        <td>
+            <p>id</p>
+        </td>
+        <td>
+            <p>first_name</p>
+        </td>
+        <td>
+            <p>last_name</p>
+        </td>
+        <td>
+            <p>email</p>
+        </td>
+        <td>
+            <p>role</p>
+        </td>
+        <td>
+            <p>active</p>
+        </td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.first_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.last_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role)
+            </td>
+            <td>
+                @using (Html.BeginForm("Active", "User", FormMethod.Post))
+                {
+                    User user = item;
+
+                    <fieldset>
+                        @Html.HiddenFor(m => user.user_id)
+
+
+                        <p>
+                            @Html.CheckBoxFor(m => user.active, new {id = user.user_id, onchange = "this.form.submit()"})
+
+                        </p>
+
+                      
+                    </fieldset>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Get", "GetUserData", new {id = item.user_id})
+            </td>
+
+        </tr>
+    }
+    @using (Html.BeginForm("Logout", "Account", FormMethod.Get))
+    {
+        <label class="logoutLblPos">
+            <input name="submit2" type="submit" id="submit2" value="log out">
+        </label>
+    }
+</table>

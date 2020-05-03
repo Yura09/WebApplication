@@ -25,50 +25,97 @@ th, td {
 <h3>addresses</h3>
 <div>
     <div style="padding-bottom: 30px">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    @using (Html.BeginForm("Index", "Address", FormMethod.Get))
-    {
         <p>
-            Find: @Html.TextBox("search", ViewBag.CurrentFilter as string)
-            <input type="submit" value="Search"/>
+            @Html.ActionLink("Create New", "Create")
         </p>
+        @using (Html.BeginForm("Index", "Address", FormMethod.Get))
+        {
+            <p>
+                Find: @Html.TextBox("search", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Search"/>
+            </p>
+        }
 
-    }
+        @using (Html.BeginForm("Index", "Address", FormMethod.Get))
+        {
+            <fieldset>
+                Sort Type
+                <select id="sortBy" name="sortBy" onchange="this.form.submit()">
 
-    @using (Html.BeginForm("Index", "Address", FormMethod.Get))
-    {
-        <fieldset>Sort Type
-            <select id="sortBy" name="sortBy" onchange="this.form.submit();">
-                <option value="address_id">address_id</option>
-                <option value="surname">surname</option>
-                <option value="address">address</option>
-                <option value="building">building</option>
-                <option value="flat">flat</option>
-                <option value="rent">rent</option>
-            </select>
-       <!--     <input type="submit" value="Submit"> -->
-            
-        </fieldset>
-        
-    }
-  
-</div>
+                    @if (ViewBag.SortParam == "address_id")
+                    {
+                        <option value="address_id" selected="selected">address_id</option>
+                    }
+                    else
+                    {
+                        <option value="address_id">address_id</option>
+                    }
+                    @if (ViewBag.SortParam == "surname")
+                    {
+                        <option value="surname" selected="selected">surname</option>
+                    }
+                    else
+                    {
+                        <option value="surname">surname</option>
+                    }
+                    @if (ViewBag.SortParam == "address")
+                    {
+                        <option value="address" selected="selected">address</option>
+                    }else{
+                    <option value="address">address</option>
+                    }
+                    @if (ViewBag.SortParam == "building")
+                    {
+                        <option value="building" selected="selected">building</option>
+                    }
+                    else
+                    {
+                        <option value="building">building</option>
+                    }
+                    @if (ViewBag.SortParam == "flat")
+                    {
+                        <option value="flat" selected="selected">flat</option>
+                    }
+                    else
+                    {
+                        <option value="flat">flat</option>
+                    }
+                    @if (ViewBag.SortParam == "rent")
+                    {
+                        <option value="rent" selected="selected">rent</option>
+                    }
+                    else
+                    {
+                        <option value="rent">rent</option>
+                    }
+
+                </select>
+                <!--     <input type="submit" value="Submit"> -->
+
+            </fieldset>
+        }
+
+    </div>
     <table>
         <tr>
             <td>
-                <p>id</p></td>
+                <p>id</p>
+            </td>
             <td>
-                <p>surname</p></td>
+                <p>surname</p>
+            </td>
             <td>
-                <p>name of address</p></td>
+                <p>name of address</p>
+            </td>
             <td>
-                <p>number of building</p></td>
+                <p>number of building</p>
+            </td>
             <td>
-                <p>number of flat</p></td>
+                <p>number of flat</p>
+            </td>
             <td>
-                <p>rent</p></td>
+                <p>rent</p>
+            </td>
             @if (User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value == "admin")
             {
                 <td></td>
@@ -104,12 +151,11 @@ th, td {
                 }
             </tr>
         }
-         @using (Html.BeginForm("Logout", "Account", FormMethod.Get))
-         {
-
-             <label class="logoutLblPos">
-                 <input name="submit2" type="submit" id="submit2" value="log out">
-             </label>
-         }
+        @using (Html.BeginForm("Logout", "Account", FormMethod.Get))
+        {
+            <label class="logoutLblPos">
+                <input name="submit2" type="submit" id="submit2" value="log out">
+            </label>
+        }
     </table>
 </div>

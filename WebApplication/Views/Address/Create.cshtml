@@ -8,11 +8,7 @@
 <h2>New Address</h2>
  
 @using (Html.BeginForm()) 
-{ @Html.LabelFor(model => model.address_id, "id")
-    <br />
-    @Html.EditorFor(model => model.address_id )
-    <span asp-validation-for="address_id"></span>
-    <br /><br />
+{ 
     @Html.LabelFor(model => model.surname, "surname")
     <br />
     @Html.EditorFor(model => model.surname)

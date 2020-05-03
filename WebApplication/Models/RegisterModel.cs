@@ -25,7 +25,7 @@ namespace WebApplication.Models
         public string ConfirmPassword { get; set; }
  
         [Required]
-        [RegularExpression(@"admin|user", ErrorMessage = "admin or user only allowed")]
+        [RegularExpression(@"admin|user|creator", ErrorMessage = "admin or user only allowed")]
         public string Role { get; set; }
     }
 }

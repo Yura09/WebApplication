@@ -35,10 +35,18 @@ namespace WebApplication.Controllers
             {
                 User user = await db.Users.FirstOrDefaultAsync(u =>
                     u.email == model.Email); //u.password == model.Password));
+               
                 if (user != null && VerifyHashedPassword(user.password, model.Password))
                 {
+                    if (!user.active)
+                    {
+                        return View(model);
+                    }
                     await Authenticate(user); // аутентификация
-
+                    if (user.role == "creator")
+                    {
+                        return RedirectToAction("Index", "User");
+                    }
                     return RedirectToAction("Index", "Address");
                 }
 
@@ -68,7 +76,7 @@ namespace WebApplication.Controllers
                     User cUser = new User
                     {
                         first_name = model.FirstName, last_name = model.LastName, email = model.Email,
-                        role = model.Role, password = HashPassword(model.Password)
+                        role = model.Role, password = HashPassword(model.Password),active = true
                     };
                     db.Users.Add(cUser);
                     

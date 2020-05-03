@@ -26,9 +26,9 @@ namespace WebApplication.Controllers
             IEnumerable<Address> list;
             if (!UserIsAdmin())
             {
-                //ViewBag.idSortParm = String.IsNullOrEmpty(sortBy) ? "id" : "";
+             
 
-                list = GetDataAddressesFromUser();
+                list = GetDataAddressesFromUser(GetUserId());
             }
             else
             {
@@ -40,11 +40,12 @@ namespace WebApplication.Controllers
                 list = SearchBy(search).ToList();
             }
 
-            if (sortBy == "id" || String.IsNullOrEmpty(sortBy))
+            if ( String.IsNullOrEmpty(sortBy))
             {
                 sortBy = "address_id";
             }
-
+             
+            ViewBag.SortParam = sortBy;
             list = list.OrderBy(o => o.GetType().GetProperty(sortBy)?.GetValue(o)).ToList();
 
             return View(list);
@@ -53,7 +54,7 @@ namespace WebApplication.Controllers
         [HttpGet("address/{id:int}")]
         public ActionResult GetAddress(int id)
         {
-            if (!UserHasAddress(id))
+            if (!UserHasAddress(id) && !UserIsAdmin())
             {
                 return NotFound();
             }
@@ -119,22 +120,28 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult Create(Address a)
         {
-            if (db.Addresses.ToList().Exists(x => x.address_id == a.address_id))
+            /*if (db.Addresses.ToList().Exists(x => x.address_id == a.address_id))
             {
                 return RedirectToAction("Index");
-            }
+            }*/
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid )
             {
+
+                Address address = new Address()
+                {
+                    surname = a.surname, address = a.address, building = a.building, flat = a.flat, rent = a.rent
+                };
+              
+                db.Addresses.Add(address);
+                db.SaveChanges();
+             
+             
                 db.AddressUsers.Add(new AddressUser
                 {
-                    address_id = a.address_id, user_id = GetUserId()
+                   address_id = address.address_id,user_id = GetUserId()
                 });
-
-                //a.AddressUsers.Add(new AddressUser{address_id = a.address_id, user_id = userId});
-                db.Entry(a).State = EntityState.Added;
                 db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
             else
@@ -184,7 +191,7 @@ namespace WebApplication.Controllers
             }
             else
             {
-                list = GetDataAddressesFromUser();
+                list = GetDataAddressesFromUser(GetUserId());
             }
 
             foreach (var obj in list)
@@ -210,11 +217,11 @@ namespace WebApplication.Controllers
             return user.user_id;
         }
 
-        public IEnumerable<Address> GetDataAddressesFromUser()
+        public IEnumerable<Address> GetDataAddressesFromUser(int id)
         {
             var list = (from r in db.Addresses
                 join c in db.AddressUsers on r.address_id equals c.address_id
-                where c.user_id == GetUserId()
+                where c.user_id == id
                 select r).AsEnumerable();
             return list;
         }

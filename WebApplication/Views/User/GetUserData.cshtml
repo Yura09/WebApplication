@@ -1,0 +1,69 @@
+﻿@model System.Collections.Generic.IEnumerable<WebApplication.Models.Address>
+
+@{
+    ViewBag.Title = "GetUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+.logoutLblPos{
+
+   position:fixed;
+   right:10px;
+   top:5px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+</style>
+<h2>User's Addresses</h2>
+ <table>
+        <tr>
+            <td>
+                <p>id</p>
+            </td>
+            <td>
+                <p>surname</p>
+            </td>
+            <td>
+                <p>name of address</p>
+            </td>
+            <td>
+                <p>number of building</p>
+            </td>
+            <td>
+                <p>number of flat</p>
+            </td>
+            <td>
+                <p>rent</p>
+            </td>
+           
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.building)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.flat)
+                </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rent)
+        </td>
+        </tr>
+        }
+            </table>

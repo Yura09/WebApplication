@@ -1,0 +1,22 @@
+﻿@model User
+
+@{
+    ViewBag.Title = "Active";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User № @Model.user_id</h2>
+@using (Html.BeginForm("Active", "User", FormMethod.Post))
+{
+    <fieldset>
+         @Html.HiddenFor(m => m.user_id)
+         
+         
+        <p>
+            @Html.EditorFor(user => user.active, "active")
+      
+        </p>
+        
+        <p><input type="submit" value="save" /></p>
+    </fieldset>
+}
